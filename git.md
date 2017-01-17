@@ -13,3 +13,6 @@ git add readme.md
 
 git commit -m "wrote a readme"
 
+> 如果提交时提示需要输入用户名和邮箱，需要添加全局变量
+git config --global user.name "close2life"
+git config --global user.email "1qaz@WSX"
