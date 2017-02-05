@@ -35,7 +35,7 @@
 -v标记也可以指定挂载一个本地的已有目录到容器中去作为数据卷
 
 ```
-sudo docker run -d --name php -v /home/x/Codes/PhpCodes:/app -p 8080:80 -p 3306:3306 close2life/mylamp
+sudo docker run -d --name php -v /home/x/Codes/CodePractice/php:/app -p 8080:80 -p 3306:3306 close2life/mylamp
 ```
 
 检查是否启动成功

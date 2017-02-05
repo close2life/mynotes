@@ -25,3 +25,9 @@
 6. `docker rmi nginx`
 
    删除nginx image
+
+7. `docker exec -ti a4d8c1ae7878 /bin/bash`
+
+   进入容器内部，并启动一个bash
+
+8. ​
