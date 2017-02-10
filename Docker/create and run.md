@@ -1,3 +1,11 @@
+## 拉取tutum/lamp
+
+1. `$ sudo docker pull tutum/lamp`
+2. `sudo docker run -d -p 8080:80 -p 3306:3306 tutum/lamp`
+3. `$ curl http://127.0.0.1:8080`
+
+
+
 ## 创建自己的lamp
 
 1. 创建新的工作目录：
