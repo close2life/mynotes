@@ -30,8 +30,8 @@
 
    进入容器内部，并启动一个bash
 
-8. `$ sudo docker exec -ti 243c32535da7  /bin/bash`
+8. `sudo docker create -it ubuntu:latest`
 
-   进入container并启动一个bash
+   创建一个容器
 
-9. ​
+9. `sudo docker run -t -i -p 80:80 -v custom/httpd /bin/bash`
