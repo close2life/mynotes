@@ -1,0 +1,17 @@
+**User name**
+
+EMBRACE
+
+**License key**
+
+===== LICENSE BEGIN =====
+
+43136-12042010
+
+00002UsvSON704l"dILe1PVx3y4"B3
+
+49AU6oSDJrsjE8nMOQh"8HTDJHIUUh
+
+gd1BebYc5U"6OxDbVsALB4Eb10PW8"
+
+===== LICENSE END =====
