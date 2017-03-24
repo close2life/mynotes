@@ -248,6 +248,126 @@ hello.html 中继承 base.html，并替换特定 block
 
 
 
+# 模型
+
+## 数据库配置
+
+默认自带SQLite的驱动。其他需要手动安装，比如mysql：
+
+```
+pip3 install mysqlclient
+```
+
+配置`settings.py`：
+
+`SQLite`：
+
+```django
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
+```
+
+`mysql`：
+
+```django
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',  # 或者使用 mysql.connector.django
+        'NAME': 'test',
+        'USER': 'test',
+        'PASSWORD': 'test123',
+        'HOST':'localhost',
+        'PORT':'3306',
+    }
+}
+```
+
+⚠️注意：这里添加了中文注释，所以你需要在 HelloWorld/settings.py 文件头部添加
+
+```
+# -*- coding: UTF-8 -*-。
+```
+
+
+
+## 定义模型
+
+### 创建APP
+
+Django项目由一系列应用程序组成。且要使用模型，必须创建一个app：
+
+```shell
+(django) xdeMacBook-Pro:python x$ python3 manage.py startapp TestModel
+```
+
+然后在`TestModel/models.py`中创建库表：
+
+```python
+from django.db import models
+
+class Test(models.Model):
+	name = models.CharField(max_length=20)
+```
+
+以上的类名代表了数据库表名，且继承了models.Model，类里面的字段代表数据表中的字段(name)，数据类型则有CharField（相当于varchar）、DateField（相当于datetime）， max_length 参数限定长度。
+
+接着在`setting.py`中的`INSTALLED_APPS` 添加创建的app
+
+```python
+INSTALLED_APPS = (
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'TestModel',               # 添加此项
+)
+```
+
+接着：
+
+```shell
+(django) xdeMacBook-Pro:python x$ python3 manage.py migrate   # 创建表结构
+(django) xdeMacBook-Pro:python x$ python3 manage.py makemigrations TestModel  # 让 Django 知道我们在我们的模型有一些变更
+(django) xdeMacBook-Pro:python x$ python3 manage.py migrate TestModel   # 创建表结构
+```
+
+### 数据库操作
+
+`urls.py`：
+
+```python
+from django.conf.urls import *
+from . import view,testdb
+ 
+urlpatterns = [
+    url(r'^hello$', view.hello),
+    url(r'^testdb$', testdb.testdb),
+]
+```
+
+#### 添加数据
+
+`tested.py`
+
+```python
+# -*- coding: utf-8 -*-
+ 
+from django.http import HttpResponse
+ 
+from TestModel.models import Test
+ 
+# 数据库操作
+def testdb(request):
+    test1 = Test(name='runoob')
+    test1.save()
+    return HttpResponse("<p>数据添加成功！</p>")
+```
 
 
 
@@ -256,35 +376,9 @@ hello.html 中继承 base.html，并替换特定 block
 
 
 
-1. 创建数据库
-
-   ```shell
-   (django) xdeMacBook-Pro:django x$ python3 manage.py migrate
-   ```
-
-2. 查看项目，主要校验是否正确创建
-
-   ```shell
-
-   ```
-
-   ​
-
-   ```
-
-   ```
 
 
 
-# 创建应用程序
-
-Django项目由一系列应用程序组成。
-
-1. 创建应用程序所需的基础设施。
-
-   ```
-   (django) xdeMacBook-Pro:django x$ python3 manage.py startapp learning_logs
-   ```
 
 
 
